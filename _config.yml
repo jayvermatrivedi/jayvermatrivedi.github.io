@@ -1,0 +1,10 @@
+title: Jay Verma Trivedi
+description: Astrophysics | Gravitation | Singularities | Cosmic Censorship
+theme: minima
+
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+
+plugins:
+  - jekyll-feed
