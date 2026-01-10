@@ -1,0 +1,23 @@
+body {
+  background-color: #0b0f19;
+  color: #e6e6eb;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+a {
+  color: #8ab4f8;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #f4b860;
+}
+
+h1, h2, h3 {
+  color: #f1f1f5;
+}
+
+.site-header, .site-footer {
+  background: #0b0f19;
+  border: none;
+}
