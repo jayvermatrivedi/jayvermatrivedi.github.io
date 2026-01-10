@@ -16,6 +16,23 @@ title: Home
     I study spacetime singularities, gravitational collapse, and their observational signatures —
     from gravitational waves to galaxy-scale phenomena.
   </div>
+<div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+  <a href="https://orcid.org/0000-0002-8064-082X" class="card" style="padding:10px 14px; border-radius:14px;">
+    ORCID
+  </a>
+
+  <a href="https://www.linkedin.com/in/jay-verma-306614140" class="card" style="padding:10px 14px; border-radius:14px;">
+    LinkedIn
+  </a>
+
+  <a href="https://scholar.google.com/" class="card" style="padding:10px 14px; border-radius:14px;">
+    Google Scholar
+  </a>
+
+  <a href="https://github.com/" class="card" style="padding:10px 14px; border-radius:14px;">
+    GitHub
+  </a>
+</div>
 
   <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
     <a href="research.html" style="padding:10px 14px; border-radius:12px; background:rgba(138,180,248,0.14); border:1px solid rgba(138,180,248,0.25);">
