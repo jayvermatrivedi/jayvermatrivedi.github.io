@@ -8,3 +8,8 @@ kramdown:
 
 plugins:
   - jekyll-feed
+header_pages:
+  - research.md
+  - blog.md
+  - cv.md
+  - contact.md
