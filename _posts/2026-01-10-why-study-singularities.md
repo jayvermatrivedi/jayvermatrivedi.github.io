@@ -4,6 +4,10 @@ title: "What is at the Centre of Our Galaxy?"
 subtitle: "Tussle of the black hole with its sibling!"
 ---
 
+<div style="font-size:18px; color:#d7d7e0; margin: 0 0 18px 0;">
+  <i>Tussle of the black hole with its sibling!</i>
+</div>
+
 <img src="/assets/sgrA_banner.jpg" style="
   width:100%;
   max-height:360px;
@@ -15,10 +19,6 @@ subtitle: "Tussle of the black hole with its sibling!"
 
 <div style="color:#d7d7e0; font-size:13px; margin-top:-6px; margin-bottom:22px;">
   Image credit: Event Horizon Telescope Collaboration (Sgr A*, 2022).
-</div>
-
-<div style="font-size:18px; color:#d7d7e0; margin: 0 0 18px 0;">
-  <i>Tussle of the black hole with its sibling!</i>
 </div>
 
 Recently, this image gained widespread popularity within moments of its release by the Event Horizon Telescope group (EHT group) on May 12, 2022. Depicting the center of our galaxy, the Milky Way, the EHT group propelled it to fame with the headline "Astronomers Reveal First Image of the Black Hole at the Heart of Our Galaxy." However, those immersed in the field of astrophysics are well aware of the nuances associated with this title. Firstly, labelling it as at the "heart" of our galaxy raises a playful eyebrow, as conventionally the heart is situated slightly to the left of the body, not at the centre, pun intended. Secondly, a technical concern arises in designating this celestial object as a "black hole".
