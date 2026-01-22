@@ -6,7 +6,7 @@ permalink: /search/
 
 # Search
 
-<input id="search-input" type="text" placeholder="Search posts and pages..." style="
+<input id="search-input" type="text" placeholder="Search blog posts..." style="
   width:100%;
   padding:12px 14px;
   border-radius:14px;
@@ -21,51 +21,58 @@ permalink: /search/
 
 <script src="https://unpkg.com/lunr/lunr.js"></script>
 <script>
-async function loadIndex() {
+async function loadPosts() {
   const res = await fetch("/search.json");
   return res.json();
 }
 
-function renderResults(results, store) {
+function renderResults(results, posts) {
   const container = document.getElementById("search-results");
+
   if (!results.length) {
     container.innerHTML = "<div class='card'>No results found.</div>";
     return;
   }
 
   container.innerHTML = results.map(r => {
-    const item = store[r.ref];
+    const post = posts[r.ref];
     return `
       <div class="card" style="margin-top:12px;">
-        <div style="font-size:13px;color:#f4b860;">${item.type}</div>
+        <div style="font-size:13px;color:#f4b860;">${post.type}</div>
         <h3 style="margin:6px 0 6px 0;">
-          <a href="${item.url}">${item.title}</a>
+          <a href="${post.url}">${post.title}</a>
         </h3>
-        <div style="color:#d7d7e0;font-size:14px;">${item.excerpt || ""}</div>
       </div>
     `;
   }).join("");
 }
 
 (async () => {
-  const store = await loadIndex();
+  const posts = await loadPosts();
+
+  // Create lunr index
   const idx = lunr(function () {
     this.ref("id");
     this.field("title");
     this.field("content");
 
-    Object.values(store).forEach(doc => this.add(doc));
+    posts.forEach((p, i) => {
+      p.id = i;
+      this.add(p);
+    });
   });
 
   const input = document.getElementById("search-input");
+
   input.addEventListener("input", () => {
     const query = input.value.trim();
     if (!query) {
       document.getElementById("search-results").innerHTML = "";
       return;
     }
+
     const results = idx.search(query);
-    renderResults(results, store);
+    renderResults(results, posts);
   });
 })();
 </script>
