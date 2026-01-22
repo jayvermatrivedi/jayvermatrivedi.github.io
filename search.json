@@ -1,0 +1,39 @@
+---
+layout: null
+permalink: /search.json
+---
+
+{
+{% assign i = 0 %}
+{% assign pages_to_index = site.pages | where_exp:"p","p.title != nil" %}
+{% assign posts_to_index = site.posts %}
+
+{% for page in pages_to_index %}
+  {% unless page.url contains "assets" %}
+  {% if i > 0 %},{% endif %}
+  "{{ i }}": {
+    "id": "{{ i }}",
+    "type": "Page",
+    "title": {{ page.title | jsonify }},
+    "url": {{ page.url | jsonify }},
+    "excerpt": {{ page.content | strip_html | truncate: 150 | jsonify }},
+    "content": {{ page.content | strip_html | jsonify }}
+  }
+  {% assign i = i | plus: 1 %}
+  {% endif %}
+  {% endunless %}
+{% endfor %}
+
+{% for post in posts_to_index %}
+  {% if i > 0 %},{% endif %}
+  "{{ i }}": {
+    "id": "{{ i }}",
+    "type": "Post",
+    "title": {{ post.title | jsonify }},
+    "url": {{ post.url | jsonify }},
+    "excerpt": {{ post.excerpt | strip_html | truncate: 150 | jsonify }},
+    "content": {{ post.content | strip_html | jsonify }}
+  }
+  {% assign i = i | plus: 1 %}
+{% endfor %}
+}
