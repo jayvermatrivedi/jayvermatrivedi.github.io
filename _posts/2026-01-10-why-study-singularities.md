@@ -4,7 +4,7 @@ title: "What is at the Centre of Our Galaxy?"
 subtitle: "Tussle of the black hole with its sibling!"
 ---
 
-<img src="/assets/images/sgrA_banner.jpg" style="
+<img src="/assets/sgrA_banner.jpg" style="
   width:100%;
   max-height:360px;
   object-fit:cover;
