@@ -3,98 +3,111 @@
   if (!canvas) return;
 
   const ctx = canvas.getContext("2d", { alpha: true });
-  let width = 0;
-  let height = 0;
+  let w = 0;
+  let h = 0;
   let dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+  let scrollRotation = 0;
+  let clickBoost = 0;
 
-  const stars = [];
-  const STAR_COUNT = 280;
-  let baseRotation = 0;
-  let boost = 0;
+  const sparks = Array.from({ length: 140 }, () => ({
+    r: Math.random(),
+    a: Math.random() * Math.PI * 2,
+    s: 0.0008 + Math.random() * 0.0015,
+    z: 0.4 + Math.random() * 1.6,
+    o: 0.15 + Math.random() * 0.45
+  }));
 
   function resize() {
-    width = window.innerWidth;
-    height = window.innerHeight;
+    w = window.innerWidth;
+    h = window.innerHeight;
     dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-    canvas.width = Math.floor(width * dpr);
-    canvas.height = Math.floor(height * dpr);
-    canvas.style.width = width + "px";
-    canvas.style.height = height + "px";
+    canvas.width = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    canvas.style.width = `${w}px`;
+    canvas.style.height = `${h}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
 
-    if (stars.length === 0) {
-      for (let i = 0; i < STAR_COUNT; i += 1) {
-        const arm = i % 2 === 0 ? 1 : -1;
-        const radius = Math.pow(Math.random(), 0.65);
-        stars.push({
-          arm,
-          radius,
-          angle: Math.random() * Math.PI * 2,
-          size: 0.4 + Math.random() * 2.1,
-          alpha: 0.15 + Math.random() * 0.85,
-          hue: 190 + Math.random() * 65,
-          speed: 0.0004 + Math.random() * 0.0012
-        });
-      }
+  function drawDisk(cx, cy, t) {
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(t);
+    ctx.scale(1, 0.46);
+
+    for (let i = 0; i < 34; i += 1) {
+      const rr = 36 + i * 7;
+      const alpha = Math.max(0, 0.22 - i * 0.0055);
+      const grad = ctx.createRadialGradient(0, 0, rr * 0.3, 0, 0, rr);
+      grad.addColorStop(0, `rgba(255, 235, 185, ${alpha * 0.9})`);
+      grad.addColorStop(0.5, `rgba(255, 171, 86, ${alpha * 0.75})`);
+      grad.addColorStop(1, `rgba(150, 105, 60, 0)`);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 2.6;
+      ctx.beginPath();
+      ctx.arc(0, 0, rr, 0, Math.PI * 2);
+      ctx.stroke();
     }
+
+    ctx.restore();
   }
 
   function draw() {
-    ctx.clearRect(0, 0, width, height);
+    ctx.clearRect(0, 0, w, h);
 
-    const cx = width * 0.5;
-    const cy = height * 0.52;
-    const maxR = Math.min(width, height) * 0.5;
+    const cx = w * 0.68;
+    const cy = h * 0.42;
+    const t = scrollRotation + clickBoost;
 
-    ctx.save();
-    ctx.translate(cx, cy);
-    ctx.rotate(baseRotation);
+    const bg = ctx.createRadialGradient(cx, cy, 40, cx, cy, Math.max(w, h) * 0.7);
+    bg.addColorStop(0, "rgba(12, 13, 17, 0.0)");
+    bg.addColorStop(1, "rgba(1, 2, 3, 0.85)");
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, w, h);
 
-    for (const s of stars) {
-      const twist = s.arm * s.radius * 5.2;
-      const theta = s.angle + twist;
-      const r = s.radius * maxR;
-      const jitter = (1 - s.radius) * 16;
-      const x = Math.cos(theta) * r + (Math.random() - 0.5) * jitter;
-      const y = Math.sin(theta) * r * 0.55 + (Math.random() - 0.5) * jitter;
+    drawDisk(cx, cy, t);
 
-      ctx.beginPath();
-      ctx.fillStyle = `hsla(${s.hue}, 90%, 78%, ${s.alpha})`;
-      ctx.arc(x, y, s.size, 0, Math.PI * 2);
-      ctx.fill();
-
-      s.angle += s.speed + boost;
-    }
-
-    const coreGlow = ctx.createRadialGradient(0, 0, 0, 0, 0, maxR * 0.24);
-    coreGlow.addColorStop(0, "rgba(255, 245, 210, 0.20)");
-    coreGlow.addColorStop(1, "rgba(255, 245, 210, 0)");
-    ctx.fillStyle = coreGlow;
     ctx.beginPath();
-    ctx.arc(0, 0, maxR * 0.24, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(1, 1, 1, 0.98)";
+    ctx.arc(cx, cy, 38, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.restore();
+    const lens = ctx.createRadialGradient(cx, cy, 38, cx, cy, 95);
+    lens.addColorStop(0, "rgba(255, 218, 160, 0.02)");
+    lens.addColorStop(0.45, "rgba(255, 218, 160, 0.18)");
+    lens.addColorStop(1, "rgba(255, 218, 160, 0)");
+    ctx.fillStyle = lens;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 95, 0, Math.PI * 2);
+    ctx.fill();
 
-    boost *= 0.92;
+    for (const s of sparks) {
+      s.a += s.s + clickBoost * 0.05;
+      const rr = 95 + s.r * 250;
+      const x = cx + Math.cos(s.a + t * 0.5) * rr;
+      const y = cy + Math.sin(s.a + t * 0.5) * rr * 0.48;
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(255, 214, 150, ${s.o})`;
+      ctx.arc(x, y, s.z, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    clickBoost *= 0.92;
     requestAnimationFrame(draw);
   }
 
-  let scrollTicking = false;
+  let ticking = false;
   window.addEventListener("scroll", () => {
-    if (!scrollTicking) {
-      scrollTicking = true;
-      window.requestAnimationFrame(() => {
-        const y = window.scrollY || 0;
-        baseRotation = y * 0.0007;
-        boost += 0.00045;
-        scrollTicking = false;
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(() => {
+        scrollRotation = window.scrollY * 0.0013;
+        ticking = false;
       });
     }
   }, { passive: true });
 
   window.addEventListener("click", () => {
-    boost += 0.003;
+    clickBoost += 0.08;
   });
 
   window.addEventListener("resize", resize);
