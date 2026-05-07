@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0b111a"/>
+      <stop offset="100%" stop-color="#1a2330"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="680" fill="url(#bg)"/>
+  <g fill="none" stroke-linecap="round">
+    <path d="M150 120 C450 300, 450 380, 150 560" stroke="#88c7ff" stroke-width="3" stroke-opacity="0.6"/>
+    <path d="M1050 120 C750 300, 750 380, 1050 560" stroke="#ffb877" stroke-width="3" stroke-opacity="0.6"/>
+    <path d="M220 120 C500 300, 500 380, 220 560" stroke="#88c7ff" stroke-width="2" stroke-opacity="0.4"/>
+    <path d="M980 120 C700 300, 700 380, 980 560" stroke="#ffb877" stroke-width="2" stroke-opacity="0.4"/>
+  </g>
+  <circle cx="600" cy="340" r="70" fill="#040507"/>
+  <circle cx="600" cy="340" r="120" fill="none" stroke="#ffd7a2" stroke-width="2" stroke-opacity="0.45"/>
+  <text x="400" y="95" fill="#c7d0df" font-size="38" font-family="Arial">Scalar / Vector Collapse</text>
+</svg>

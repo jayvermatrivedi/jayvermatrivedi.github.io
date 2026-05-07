@@ -4,20 +4,20 @@
 @import "minima";
 
 :root {
-  --bg: #050608;
-  --panel: rgba(14, 16, 22, 0.78);
-  --panel-strong: rgba(20, 22, 30, 0.9);
-  --text: #edf1f7;
-  --muted: #b5c0d1;
-  --accent: #7fc8ff;
-  --accent-2: #f6b774;
-  --line: rgba(255, 255, 255, 0.13);
+  --bg: #030407;
+  --panel: rgba(13, 17, 24, 0.78);
+  --panel-soft: rgba(17, 21, 29, 0.58);
+  --text: #ecf1f9;
+  --muted: #b9c4d7;
+  --line: rgba(255, 255, 255, 0.15);
+  --accent: #8fd3ff;
+  --accent-warm: #ffbf82;
 }
 
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  font-family: "Manrope", "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
 #galaxy-bg {
@@ -36,55 +36,141 @@ body::before {
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(900px 500px at 75% 5%, rgba(92, 160, 212, 0.13), transparent 60%),
-    radial-gradient(800px 520px at 20% 90%, rgba(246, 183, 116, 0.10), transparent 56%),
-    linear-gradient(180deg, rgba(3, 4, 6, 0.45), rgba(3, 4, 6, 0.85));
+    radial-gradient(1000px 620px at 77% 36%, rgba(255, 181, 104, 0.09), transparent 58%),
+    radial-gradient(700px 500px at 15% 18%, rgba(125, 185, 240, 0.11), transparent 62%),
+    linear-gradient(90deg, rgba(2, 3, 5, 0.92) 0%, rgba(2, 3, 5, 0.75) 40%, rgba(2, 3, 5, 0.35) 100%);
 }
 
 .site-header,
 .site-footer {
-  background: transparent;
   border: none;
+  background: transparent;
 }
 
 .site-title,
 .page-link,
+a,
 h1,
 h2,
 h3,
-h4,
-a {
+h4 {
   color: var(--text);
 }
 
 a {
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: color 0.22s ease, border-color 0.22s ease;
 }
 
 a:hover {
   color: var(--accent);
-  border-bottom-color: rgba(127, 200, 255, 0.45);
+  border-bottom-color: rgba(143, 211, 255, 0.45);
 }
 
-.wrapper {
-  max-width: 1060px;
+.page-content .wrapper {
+  max-width: min(760px, 56vw);
+  margin-left: 6vw;
+  margin-right: auto;
+}
+
+@media (max-width: 1080px) {
+  .page-content .wrapper {
+    max-width: 940px;
+    margin-left: auto;
+    padding: 0 20px;
+  }
+}
+
+.site-header .wrapper,
+.site-footer .wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero-split {
+  min-height: 58vh;
+  display: grid;
+  align-content: center;
+}
+
+.hero-copy h1 {
+  margin: 8px 0 14px;
+  font-size: clamp(2rem, 4.2vw, 3.3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.eyebrow {
+  color: var(--accent-warm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.lede {
+  color: var(--muted);
+  font-size: 1.12rem;
+  line-height: 1.75;
+  max-width: 55ch;
+}
+
+.cta-row,
+.link-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.btn-ghost {
+  display: inline-block;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--panel-soft);
 }
 
 .card {
-  padding: 18px 20px;
+  padding: 20px;
   border-radius: 18px;
   background: var(--panel);
-  backdrop-filter: blur(7px);
   border: 1px solid var(--line);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.4);
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(127, 200, 255, 0.3);
+.paper-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.paper-card {
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42);
+}
+
+.paper-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.paper-copy {
+  padding: 16px 18px 18px;
+}
+
+.paper-copy h3 {
+  margin: 0 0 8px;
+}
+
+.paper-copy p {
+  color: var(--muted);
+  margin: 0 0 8px;
 }
 
 .grid {
@@ -93,7 +179,7 @@ a:hover {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-@media (max-width: 920px) {
+@media (max-width: 860px) {
   .grid {
     grid-template-columns: 1fr;
   }
@@ -106,10 +192,6 @@ a:hover {
 
 pre,
 code {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   border-radius: 8px;
-}
-
-mjx-container[jax="CHTML"] {
-  color: var(--text);
 }

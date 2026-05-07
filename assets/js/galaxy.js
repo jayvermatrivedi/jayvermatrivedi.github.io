@@ -5,16 +5,15 @@
   const ctx = canvas.getContext("2d", { alpha: true });
   let w = 0;
   let h = 0;
-  let dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-  let scrollRotation = 0;
-  let clickBoost = 0;
+  let dpr = 1;
+  let scrollRot = 0;
+  let impulse = 0;
 
-  const sparks = Array.from({ length: 140 }, () => ({
-    r: Math.random(),
+  const dust = Array.from({ length: 180 }, () => ({
     a: Math.random() * Math.PI * 2,
-    s: 0.0008 + Math.random() * 0.0015,
-    z: 0.4 + Math.random() * 1.6,
-    o: 0.15 + Math.random() * 0.45
+    r: 0.2 + Math.random() * 0.8,
+    t: Math.random() * 0.6,
+    s: 0.0002 + Math.random() * 0.001
   }));
 
   function resize() {
@@ -28,86 +27,83 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
-  function drawDisk(cx, cy, t) {
+  function ring(cx, cy, rad, rot, width, colorA, colorB) {
     ctx.save();
     ctx.translate(cx, cy);
-    ctx.rotate(t);
-    ctx.scale(1, 0.46);
+    ctx.rotate(rot);
+    ctx.scale(1, 0.34);
 
-    for (let i = 0; i < 34; i += 1) {
-      const rr = 36 + i * 7;
-      const alpha = Math.max(0, 0.22 - i * 0.0055);
-      const grad = ctx.createRadialGradient(0, 0, rr * 0.3, 0, 0, rr);
-      grad.addColorStop(0, `rgba(255, 235, 185, ${alpha * 0.9})`);
-      grad.addColorStop(0.5, `rgba(255, 171, 86, ${alpha * 0.75})`);
-      grad.addColorStop(1, `rgba(150, 105, 60, 0)`);
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = 2.6;
-      ctx.beginPath();
-      ctx.arc(0, 0, rr, 0, Math.PI * 2);
-      ctx.stroke();
-    }
+    const grad = ctx.createLinearGradient(-rad, 0, rad, 0);
+    grad.addColorStop(0, colorA);
+    grad.addColorStop(0.5, colorB);
+    grad.addColorStop(1, colorA);
 
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = width;
+    ctx.beginPath();
+    ctx.arc(0, 0, rad, 0, Math.PI * 2);
+    ctx.stroke();
     ctx.restore();
   }
 
   function draw() {
     ctx.clearRect(0, 0, w, h);
 
-    const cx = w * 0.68;
+    const cx = w * 0.79;
     const cy = h * 0.42;
-    const t = scrollRotation + clickBoost;
+    const rot = scrollRot + impulse;
 
-    const bg = ctx.createRadialGradient(cx, cy, 40, cx, cy, Math.max(w, h) * 0.7);
-    bg.addColorStop(0, "rgba(12, 13, 17, 0.0)");
-    bg.addColorStop(1, "rgba(1, 2, 3, 0.85)");
-    ctx.fillStyle = bg;
+    const haze = ctx.createRadialGradient(cx, cy, 20, cx, cy, Math.max(w, h) * 0.46);
+    haze.addColorStop(0, "rgba(255,170,88,0.07)");
+    haze.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = haze;
     ctx.fillRect(0, 0, w, h);
 
-    drawDisk(cx, cy, t);
+    ring(cx, cy, 280, rot * 0.45, 34, "rgba(126,195,255,0.04)", "rgba(255,196,130,0.36)");
+    ring(cx, cy, 245, rot * 0.6 + 0.7, 24, "rgba(255,184,104,0.12)", "rgba(255,218,178,0.48)");
+    ring(cx, cy, 210, rot * 0.78 + 1.4, 16, "rgba(126,195,255,0.18)", "rgba(255,168,96,0.40)");
 
-    ctx.beginPath();
-    ctx.fillStyle = "rgba(1, 1, 1, 0.98)";
-    ctx.arc(cx, cy, 38, 0, Math.PI * 2);
-    ctx.fill();
-
-    const lens = ctx.createRadialGradient(cx, cy, 38, cx, cy, 95);
-    lens.addColorStop(0, "rgba(255, 218, 160, 0.02)");
-    lens.addColorStop(0.45, "rgba(255, 218, 160, 0.18)");
-    lens.addColorStop(1, "rgba(255, 218, 160, 0)");
-    ctx.fillStyle = lens;
-    ctx.beginPath();
-    ctx.arc(cx, cy, 95, 0, Math.PI * 2);
-    ctx.fill();
-
-    for (const s of sparks) {
-      s.a += s.s + clickBoost * 0.05;
-      const rr = 95 + s.r * 250;
-      const x = cx + Math.cos(s.a + t * 0.5) * rr;
-      const y = cy + Math.sin(s.a + t * 0.5) * rr * 0.48;
+    for (const d of dust) {
+      d.a += d.s + impulse * 0.04;
+      const rr = 130 + d.r * 235;
+      const x = cx + Math.cos(d.a + rot * 0.8) * rr;
+      const y = cy + Math.sin(d.a + rot * 0.8) * rr * 0.34;
       ctx.beginPath();
-      ctx.fillStyle = `rgba(255, 214, 150, ${s.o})`;
-      ctx.arc(x, y, s.z, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,220,170,${0.06 + d.t})`;
+      ctx.arc(x, y, 0.4 + d.t * 2.2, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    clickBoost *= 0.92;
+    const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, 118);
+    glow.addColorStop(0, "rgba(255,230,190,0.28)");
+    glow.addColorStop(0.5, "rgba(255,160,92,0.14)");
+    glow.addColorStop(1, "rgba(255,160,92,0)");
+    ctx.fillStyle = glow;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 118, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.fillStyle = "rgba(1,1,2,0.99)";
+    ctx.arc(cx, cy, 56, 0, Math.PI * 2);
+    ctx.fill();
+
+    impulse *= 0.93;
     requestAnimationFrame(draw);
   }
 
   let ticking = false;
   window.addEventListener("scroll", () => {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(() => {
-        scrollRotation = window.scrollY * 0.0013;
-        ticking = false;
-      });
-    }
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      scrollRot = window.scrollY * 0.0016;
+      ticking = false;
+    });
   }, { passive: true });
 
   window.addEventListener("click", () => {
-    clickBoost += 0.08;
+    impulse += 0.08;
   });
 
   window.addEventListener("resize", resize);
