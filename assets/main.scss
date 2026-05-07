@@ -190,6 +190,24 @@ a:hover {
   line-height: 1.8;
 }
 
+.global-contact {
+  margin: 28px 0 14px;
+}
+
+.global-contact .wrapper {
+  max-width: min(760px, 56vw);
+  margin-left: 6vw;
+  margin-right: auto;
+}
+
+@media (max-width: 1080px) {
+  .global-contact .wrapper {
+    max-width: 940px;
+    margin-left: auto;
+    padding: 0 20px;
+  }
+}
+
 pre,
 code {
   background: rgba(255, 255, 255, 0.06);
