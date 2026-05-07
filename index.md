@@ -33,3 +33,26 @@ title: Home
     <li><b>Lense-Thirring effect and precession of timelike geodesics</b> (PDU, 2023)</li>
   </ul>
 </section>
+
+<section class="card" style="margin-top: 18px;">
+  <h2 style="margin-top:0;">Featured Blogs</h2>
+  <div class="paper-grid">
+    <article class="paper-card">
+      <div class="paper-copy">
+        <p class="eyebrow" style="margin:0 0 8px;">Medium Article 01</p>
+        <h3>What is at the Centre of Our Galaxy?</h3>
+        <p>Black hole versus naked singularity at the Galactic center, and why the distinction matters physically.</p>
+        <p><a href="/2026/01/10/why-study-singularities.html">Read on this website</a></p>
+      </div>
+    </article>
+
+    <article class="paper-card">
+      <div class="paper-copy">
+        <p class="eyebrow" style="margin:0 0 8px;">Medium Article 02</p>
+        <h3>Do Naked Singularities Respect the Second Law Better Than Black Holes?</h3>
+        <p>Entropy, horizons, and information flow in collapse outcomes with and without event horizons.</p>
+        <p><a href="/2026/05/07/do-naked-singularities-second-law.html">Read on this website</a> · <a href="https://medium.com/@jayverma4455/%EF%B8%8F-do-naked-singularities-respect-the-second-law-better-than-black-holes-ec75aded25cf">Read on Medium</a></p>
+      </div>
+    </article>
+  </div>
+</section>
