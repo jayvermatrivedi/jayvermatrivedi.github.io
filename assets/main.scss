@@ -61,6 +61,74 @@ body::before {
   pointer-events: none;
 }
 
+.lcars-topbar {
+  position: fixed;
+  left: 96px;
+  top: 14px;
+  z-index: 9;
+  display: flex;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.lcars-chip {
+  display: inline-block;
+  height: 20px;
+  border-radius: 999px;
+}
+
+.chip-a { width: 130px; background: var(--lcars-peach); }
+.chip-b { width: 85px; background: #f8d090; }
+.chip-c { width: 48px; background: var(--lcars-blue); }
+.chip-d { width: 120px; background: #9f8eff; }
+.chip-e { width: 62px; background: #ff9d72; }
+
+.lcars-right {
+  position: fixed;
+  right: 18px;
+  top: 84px;
+  width: 88px;
+  height: calc(100vh - 140px);
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.lcars-pill {
+  height: 56px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #86d0ff 0%, #7fcbff 55%, #6e78f2 100%);
+}
+
+.lcars-strip {
+  border-radius: 12px;
+  animation: lcarsPulse 6s ease-in-out infinite;
+}
+
+.strip-1 { height: 122px; background: #f6b774; animation-delay: 0s; }
+.strip-2 { height: 88px; background: #9f8eff; animation-delay: 1.2s; }
+.strip-3 { flex: 1; background: linear-gradient(180deg, #f28a53, #f8d090); animation-delay: 2.4s; }
+
+.lcars-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.lcars-matrix span {
+  display: block;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(143, 211, 255, 0.72);
+  animation: lcarsBlink 2.2s steps(1) infinite;
+}
+
+.lcars-matrix span:nth-child(3n) { background: rgba(242, 138, 83, 0.82); }
+.lcars-matrix span:nth-child(4n) { animation-delay: 0.5s; }
+.lcars-matrix span:nth-child(5n) { animation-delay: 0.9s; }
+
 .lcars-cap,
 .lcars-band {
   border-radius: 24px;
@@ -85,7 +153,7 @@ body::before {
 .site-footer .wrapper {
   max-width: 1220px;
   margin: 0 auto;
-  padding: 0 20px 0 110px;
+  padding: 0 120px 0 110px;
 }
 
 .site-title {
@@ -108,14 +176,16 @@ body::before {
 
 .page-content .wrapper,
 .global-contact .wrapper {
-  max-width: min(860px, 62vw);
+  max-width: min(850px, 59vw);
   margin-left: 120px;
   margin-right: auto;
-  padding: 0 24px 0 8px;
+  padding: 0 116px 0 8px;
 }
 
 @media (max-width: 1080px) {
-  .lcars-rail { display: none; }
+  .lcars-rail,
+  .lcars-right,
+  .lcars-topbar { display: none; }
 
   .site-header .wrapper,
   .site-footer .wrapper,
@@ -125,6 +195,11 @@ body::before {
     margin: 0 auto;
     padding: 0 20px;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lcars-strip,
+  .lcars-matrix span { animation: none; }
 }
 
 h1,
@@ -257,4 +332,14 @@ code {
 
 .global-contact .card {
   background: var(--panel-strong);
+}
+
+@keyframes lcarsPulse {
+  0%, 100% { filter: brightness(0.9) saturate(0.95); }
+  50% { filter: brightness(1.12) saturate(1.08); }
+}
+
+@keyframes lcarsBlink {
+  0%, 55% { opacity: 1; }
+  56%, 100% { opacity: 0.35; }
 }

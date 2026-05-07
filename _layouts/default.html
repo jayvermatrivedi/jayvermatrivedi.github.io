@@ -3,12 +3,30 @@
   {%- include head.html -%}
   <body>
     <canvas id="galaxy-bg" aria-hidden="true"></canvas>
+    <div class="lcars-topbar" aria-hidden="true">
+      <span class="lcars-chip chip-a"></span>
+      <span class="lcars-chip chip-b"></span>
+      <span class="lcars-chip chip-c"></span>
+      <span class="lcars-chip chip-d"></span>
+      <span class="lcars-chip chip-e"></span>
+    </div>
     <div class="lcars-rail" aria-hidden="true">
       <div class="lcars-cap"></div>
       <div class="lcars-band lcars-band-a"></div>
       <div class="lcars-band lcars-band-b"></div>
       <div class="lcars-band lcars-band-c"></div>
     </div>
+    <aside class="lcars-right" aria-hidden="true">
+      <div class="lcars-pill"></div>
+      <div class="lcars-strip strip-1"></div>
+      <div class="lcars-strip strip-2"></div>
+      <div class="lcars-strip strip-3"></div>
+      <div class="lcars-matrix">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </aside>
 
     {%- include header.html -%}
 
