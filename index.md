@@ -23,8 +23,8 @@ title: Home
   </h1>
 
   <div style="max-width:760px; font-size:18px; line-height:1.6; color:#e6e6eb;">
-    I study spacetime singularities, gravitational collapse, and their observational signatures —
-    from gravitational waves to galaxy-scale phenomena.
+    PhD researcher at Ahmedabad University working on gravitational collapse, naked singularities,
+    and observational signatures in strong gravity.
   </div>
 
   <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
@@ -32,15 +32,15 @@ title: Home
       ORCID
     </a>
 
-    <a href="https://www.linkedin.com/in/jay-verma-306614140" class="card" style="padding:10px 14px; border-radius:14px;">
+    <a href="https://www.linkedin.com/in/jay-verma-trivedi-306614140" class="card" style="padding:10px 14px; border-radius:14px;">
       LinkedIn
     </a>
 
-    <a href="https://scholar.google.com/" class="card" style="padding:10px 14px; border-radius:14px;">
-      Google Scholar
+    <a href="https://arxiv.org/search/?searchtype=author&query=Trivedi%2C+J+V" class="card" style="padding:10px 14px; border-radius:14px;">
+      arXiv Author Search
     </a>
 
-    <a href="https://github.com/" class="card" style="padding:10px 14px; border-radius:14px;">
+    <a href="https://github.com/jayvermatrivedi" class="card" style="padding:10px 14px; border-radius:14px;">
       GitHub
     </a>
   </div>
@@ -49,8 +49,8 @@ title: Home
     <a href="research.html" style="padding:10px 14px; border-radius:12px; background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.14);">
       Explore Research →
     </a>
-    <a href="blog.html" style="padding:10px 14px; border-radius:12px; background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.14);">
-      Read Blog →
+    <a href="preprints.html" style="padding:10px 14px; border-radius:12px; background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.14);">
+      Publications →
     </a>
     <a href="cv.html" style="padding:10px 14px; border-radius:12px; background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.14);">
       View CV →
@@ -58,14 +58,14 @@ title: Home
   </div>
 </div>
 
-<hr/>
+---
 
+## Recent Research Output
 
-## Research Themes
-- **Naked singularities & cosmic censorship**
-- **Gravitational collapse dynamics**
-- **Gravitational waves from strong-field gravity**
-- **Galaxy quenching via accretion / compact objects**
+- **Generalized JMN Naked Singularity Models** (arXiv:2603.20676, 2026)
+- **Astrophysical Black holes: An Explanation for the Galaxy Quenching** (JHEAp, DOI: 10.1016/j.jheap.2026.100597)
+- **Gravitational collapse of scalar and vector fields** (Phys. Rev. D 108, 044049, 2023)
+- **Lense-Thirring effect and precession of timelike geodesics in slowly rotating black hole and naked singularity spacetimes** (Phys. Dark Univ. 40, 101215, 2023)
 
 ## Latest Blog Posts
 {% for post in site.posts limit:3 %}

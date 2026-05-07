@@ -5,34 +5,29 @@ title: Research
 
 # Research
 
-My PhD work focuses on the **observational aspects of singularities**, motivated by the open status of the
-**Cosmic Censorship Conjecture** and the possibility that **naked singularities** may arise in realistic gravitational collapse.
-The central goal is to identify **testable observational signatures** that can distinguish naked singularities from black holes. :contentReference[oaicite:1]{index=1}
+My current work focuses on observational probes of strong-gravity compact objects, with emphasis on naked singularity spacetimes and their astrophysical signatures.
 
 <div class="grid">
 
 <div class="card">
   <div style="font-size:13px; letter-spacing:1px; text-transform:uppercase; color:#f4b860;">
-    Avenue 01 · Gravitational Waves
+    Avenue 01 · Compact Objects
   </div>
-  <h3 style="margin-top:8px;">GW Signatures of Naked Singularities</h3>
+  <h3 style="margin-top:8px;">JMN and Generalized JMN Spacetimes</h3>
   <div style="color:#d7d7e0;">
-    Developing perturbation theory tools (Regge–Wheeler / Zerilli framework) for naked singularity models such as
-    <b>JMN-1</b> and <b>JMN-2</b>, and exploring quasi-normal modes, waveform morphology, and possible echoes.
-    The long-term goal is waveform templates that can be tested with LIGO-class detectors. :contentReference[oaicite:2]{index=2}
+    Building and testing horizonless compact-object models from gravitational collapse,
+    including generalized inhomogeneous JMN families and their causal/observational structure.
   </div>
 </div>
 
 <div class="card">
   <div style="font-size:13px; letter-spacing:1px; text-transform:uppercase; color:#f4b860;">
-    Avenue 02 · Accretion · Jets · GRBs
+    Avenue 02 · Observable Signatures
   </div>
-  <h3 style="margin-top:8px;">Accretion Disks, Jet Physics & GRB Central Engines</h3>
+  <h3 style="margin-top:8px;">Precession, Shadows, and Accretion</h3>
   <div style="color:#d7d7e0;">
-    Investigating accretion properties of horizonless ultra-compact objects (e.g. JMN models) and their observable
-    imprints: high-energy emission, jet formation and GRB phenomenology. We aim to test whether naked singularities
-    can explain extreme bursts such as <b>GRB 221009A</b>, using GRMHD simulations (HARM) and particle-physics event generators
-    (PYTHIA) for pp collisions near the compact object. :contentReference[oaicite:3]{index=3}
+    Studying measurable deviations from black-hole predictions via Lense-Thirring precession,
+    accretion-disk spectra, and shadow behavior across compact-object spacetimes.
   </div>
 </div>
 
@@ -40,11 +35,10 @@ The central goal is to identify **testable observational signatures** that can d
   <div style="font-size:13px; letter-spacing:1px; text-transform:uppercase; color:#f4b860;">
     Avenue 03 · Galaxy Evolution
   </div>
-  <h3 style="margin-top:8px;">Quenching of Star Formation & Feedback from Compact Cores</h3>
+  <h3 style="margin-top:8px;">Galaxy Quenching Mechanisms</h3>
   <div style="color:#d7d7e0;">
-    Exploring how ultra-compact horizonless central objects can produce sustained high-energy output via accretion disks
-    extending deeper than the ISCO cutoff in black holes, potentially providing a mechanism for long-term galaxy quenching.
-    Motivated by the “cooling problem” and early quenched galaxies observed at high redshift. :contentReference[oaicite:4]{index=4}
+    Examining whether sustained feedback from horizonless compact cores can contribute to
+    long-term star-formation quenching in galaxies.
   </div>
 </div>
 
@@ -52,47 +46,38 @@ The central goal is to identify **testable observational signatures** that can d
 
 ---
 
-## Current Projects
+## Active Directions
 
-1. **Quenching of star formation via horizonless compact cores** (accretion-driven energetic feedback)
-2. **Regge–Wheeler equations and effective potentials for JMN-1 and JMN-2 naked singularities**
-3. **Centre-of-mass energy enhancement near naked singularities and particle production channels**
-4. **Future: numerical relativity simulations of naked singularity coalescences & GW waveform catalog** :contentReference[oaicite:5]{index=5}
+1. Perturbative and orbital observables in naked-singularity backgrounds
+2. Accretion phenomenology in black-hole mimicker models
+3. Feedback energetics and quenching-scale implications
+4. Extensions toward waveform modelling in strong gravity
 
 ---
 
-## Methods & Tools
+## Methods
 
 <div class="grid">
 
 <div class="card">
-  <h3 style="margin-top:6px;">Analytical GR</h3>
+  <h3 style="margin-top:6px;">Analytical Relativity</h3>
   <div style="color:#d7d7e0;">
-    Linear perturbation theory, tensor spherical harmonics, axial/polar decomposition, effective potentials,
-    quasi-normal modes.
+    Geodesic analysis, slow-rotation expansions, effective potentials, and collapse modelling.
   </div>
 </div>
 
 <div class="card">
-  <h3 style="margin-top:6px;">Numerical & Simulation</h3>
+  <h3 style="margin-top:6px;">Astrophysical Modelling</h3>
   <div style="color:#d7d7e0;">
-    Einstein Toolkit / NR pipeline (planned), GRMHD with HARM in naked singularity backgrounds, waveform extraction.
+    Thin-disk signatures, compact-object diagnostics, and comparative source modelling.
   </div>
 </div>
 
 <div class="card">
-  <h3 style="margin-top:6px;">High-Energy Modelling</h3>
+  <h3 style="margin-top:6px;">Numerical Workflows</h3>
   <div style="color:#d7d7e0;">
-    High-energy collisions near compact objects, Monte Carlo event generation using PYTHIA, synthetic spectra and
-    burst profiles for GRB comparison.
+    Simulation-assisted interpretation for strong-field observables and parameter studies.
   </div>
 </div>
 
 </div>
-
----
-
-## Selected Manuscripts / Works
-- *Astrophysical Black Holes: An Explanation for the Galaxy Quenching*  
-- *Gravitational collapse of scalar and vector fields*  
-- *Lense–Thirring effect and precession of timelike geodesics...*
