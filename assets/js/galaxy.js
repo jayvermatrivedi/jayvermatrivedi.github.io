@@ -1,112 +1,200 @@
 (() => {
   const canvas = document.getElementById("galaxy-bg");
-  if (!canvas) return;
+  if (!canvas || !window.THREE) return;
 
-  const ctx = canvas.getContext("2d", { alpha: true });
-  let w = 0;
-  let h = 0;
-  let dpr = 1;
-  let scrollRot = 0;
-  let impulse = 0;
+  const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const dust = Array.from({ length: 180 }, () => ({
-    a: Math.random() * Math.PI * 2,
-    r: 0.2 + Math.random() * 0.8,
-    t: Math.random() * 0.6,
-    s: 0.0002 + Math.random() * 0.001
-  }));
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-  function resize() {
-    w = window.innerWidth;
-    h = window.innerHeight;
-    dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-    canvas.width = Math.floor(w * dpr);
-    canvas.height = Math.floor(h * dpr);
-    canvas.style.width = `${w}px`;
-    canvas.style.height = `${h}px`;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 200);
+  camera.position.set(0, 0, 16);
 
-  function ring(cx, cy, rad, rot, width, colorA, colorB) {
-    ctx.save();
-    ctx.translate(cx, cy);
-    ctx.rotate(rot);
-    ctx.scale(1, 0.34);
+  const root = new THREE.Group();
+  root.position.set(6.8, 1.6, -6);
+  root.rotation.set(0.26, 0.18, -0.08);
+  scene.add(root);
 
-    const grad = ctx.createLinearGradient(-rad, 0, rad, 0);
-    grad.addColorStop(0, colorA);
-    grad.addColorStop(0.5, colorB);
-    grad.addColorStop(1, colorA);
+  const ambient = new THREE.AmbientLight(0x8fb8ff, 0.45);
+  scene.add(ambient);
 
-    ctx.strokeStyle = grad;
-    ctx.lineWidth = width;
+  const key = new THREE.PointLight(0xffbf83, 2.1, 80, 1.5);
+  key.position.set(3, 1.5, 4);
+  root.add(key);
+
+  const fill = new THREE.PointLight(0x7ec5ff, 0.85, 100, 2);
+  fill.position.set(-5, -1, -2);
+  root.add(fill);
+
+  const hole = new THREE.Mesh(
+    new THREE.SphereGeometry(1.75, 64, 64),
+    new THREE.MeshBasicMaterial({ color: 0x020202 })
+  );
+  root.add(hole);
+
+  function buildDiskTexture(size, outerAlpha) {
+    const c = document.createElement("canvas");
+    c.width = size;
+    c.height = size;
+    const ctx = c.getContext("2d");
+
+    const cx = size / 2;
+    const cy = size / 2;
+    const inner = size * 0.22;
+    const outer = size * 0.49;
+
+    const base = ctx.createRadialGradient(cx, cy, inner, cx, cy, outer);
+    base.addColorStop(0, "rgba(255, 217, 168, 0)");
+    base.addColorStop(0.18, "rgba(255, 214, 150, 0.9)");
+    base.addColorStop(0.55, "rgba(255, 166, 95, 0.55)");
+    base.addColorStop(1, `rgba(55, 30, 15, ${outerAlpha})`);
+
+    ctx.fillStyle = base;
     ctx.beginPath();
-    ctx.arc(0, 0, rad, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.restore();
-  }
+    ctx.arc(cx, cy, outer, 0, Math.PI * 2);
+    ctx.fill();
 
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-
-    const cx = w * 0.79;
-    const cy = h * 0.42;
-    const rot = scrollRot + impulse;
-
-    const haze = ctx.createRadialGradient(cx, cy, 20, cx, cy, Math.max(w, h) * 0.46);
-    haze.addColorStop(0, "rgba(255,170,88,0.07)");
-    haze.addColorStop(1, "rgba(0,0,0,0)");
-    ctx.fillStyle = haze;
-    ctx.fillRect(0, 0, w, h);
-
-    ring(cx, cy, 280, rot * 0.45, 34, "rgba(126,195,255,0.04)", "rgba(255,196,130,0.36)");
-    ring(cx, cy, 245, rot * 0.6 + 0.7, 24, "rgba(255,184,104,0.12)", "rgba(255,218,178,0.48)");
-    ring(cx, cy, 210, rot * 0.78 + 1.4, 16, "rgba(126,195,255,0.18)", "rgba(255,168,96,0.40)");
-
-    for (const d of dust) {
-      d.a += d.s + impulse * 0.04;
-      const rr = 130 + d.r * 235;
-      const x = cx + Math.cos(d.a + rot * 0.8) * rr;
-      const y = cy + Math.sin(d.a + rot * 0.8) * rr * 0.34;
-      ctx.beginPath();
-      ctx.fillStyle = `rgba(255,220,170,${0.06 + d.t})`;
-      ctx.arc(x, y, 0.4 + d.t * 2.2, 0, Math.PI * 2);
-      ctx.fill();
+    ctx.globalCompositeOperation = "lighter";
+    for (let i = 0; i < 1200; i += 1) {
+      const t = Math.random() * Math.PI * 2;
+      const r = inner + Math.random() * (outer - inner);
+      const x = cx + Math.cos(t) * r;
+      const y = cy + Math.sin(t) * r;
+      const a = 0.05 + Math.random() * 0.16;
+      ctx.fillStyle = `rgba(255, ${150 + Math.floor(Math.random() * 80)}, ${90 + Math.floor(Math.random() * 70)}, ${a})`;
+      ctx.fillRect(x, y, 1.4, 1.4);
     }
 
-    const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, 118);
-    glow.addColorStop(0, "rgba(255,230,190,0.28)");
-    glow.addColorStop(0.5, "rgba(255,160,92,0.14)");
-    glow.addColorStop(1, "rgba(255,160,92,0)");
-    ctx.fillStyle = glow;
-    ctx.beginPath();
-    ctx.arc(cx, cy, 118, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.fillStyle = "rgba(1,1,2,0.99)";
-    ctx.arc(cx, cy, 56, 0, Math.PI * 2);
-    ctx.fill();
-
-    impulse *= 0.93;
-    requestAnimationFrame(draw);
+    return new THREE.CanvasTexture(c);
   }
 
-  let ticking = false;
+  const diskTexA = buildDiskTexture(1024, 0.02);
+  const diskTexB = buildDiskTexture(1024, 0.01);
+
+  function ringMesh(inner, outer, tex, opacity) {
+    return new THREE.Mesh(
+      new THREE.RingGeometry(inner, outer, 256),
+      new THREE.MeshBasicMaterial({
+        map: tex,
+        transparent: true,
+        opacity,
+        side: THREE.DoubleSide,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending
+      })
+    );
+  }
+
+  const diskA = ringMesh(2.2, 6.7, diskTexA, 0.92);
+  diskA.rotation.x = 1.24;
+  root.add(diskA);
+
+  const diskB = ringMesh(2.45, 7.6, diskTexB, 0.35);
+  diskB.rotation.x = 1.24;
+  diskB.rotation.z = 0.2;
+  root.add(diskB);
+
+  const halo = new THREE.Sprite(
+    new THREE.SpriteMaterial({
+      map: (() => {
+        const c = document.createElement("canvas");
+        c.width = 512;
+        c.height = 512;
+        const ctx = c.getContext("2d");
+        const g = ctx.createRadialGradient(256, 256, 0, 256, 256, 256);
+        g.addColorStop(0, "rgba(255,220,180,0.35)");
+        g.addColorStop(0.35, "rgba(255,170,110,0.18)");
+        g.addColorStop(1, "rgba(255,170,110,0)");
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, 512, 512);
+        return new THREE.CanvasTexture(c);
+      })(),
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending
+    })
+  );
+  halo.scale.set(8.5, 8.5, 1);
+  root.add(halo);
+
+  const starsGeo = new THREE.BufferGeometry();
+  const STAR_COUNT = 900;
+  const positions = new Float32Array(STAR_COUNT * 3);
+  for (let i = 0; i < STAR_COUNT; i += 1) {
+    const r = 26 + Math.random() * 94;
+    const a = Math.random() * Math.PI * 2;
+    const y = (Math.random() - 0.5) * 36;
+    positions[i * 3 + 0] = Math.cos(a) * r;
+    positions[i * 3 + 1] = y;
+    positions[i * 3 + 2] = Math.sin(a) * r - 30;
+  }
+  starsGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+  const stars = new THREE.Points(
+    starsGeo,
+    new THREE.PointsMaterial({
+      color: 0xaed7ff,
+      size: 0.14,
+      transparent: true,
+      opacity: 0.52,
+      depthWrite: false
+    })
+  );
+  scene.add(stars);
+
+  let scrollY = window.scrollY || 0;
+  let clickBoost = 0;
+
+  function onResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    if (window.innerWidth < 900) {
+      root.position.set(2.6, 1.2, -5.8);
+      camera.position.set(0, 0, 17.2);
+    } else {
+      root.position.set(6.8, 1.6, -6);
+      camera.position.set(0, 0, 16);
+    }
+  }
+
+  window.addEventListener("resize", onResize);
+  onResize();
+
   window.addEventListener("scroll", () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      scrollRot = window.scrollY * 0.0016;
-      ticking = false;
-    });
+    scrollY = window.scrollY || 0;
   }, { passive: true });
 
   window.addEventListener("click", () => {
-    impulse += 0.08;
+    if (!reduceMotion) clickBoost += 0.06;
   });
 
-  window.addEventListener("resize", resize);
-  resize();
-  draw();
+  const clock = new THREE.Clock();
+
+  function tick() {
+    const t = clock.getElapsedTime();
+    const scrollFactor = Math.min(1.5, scrollY / 1400);
+
+    const baseSpeed = reduceMotion ? 0.0008 : 0.0035;
+    const speed = baseSpeed + scrollFactor * 0.003 + clickBoost * 0.055;
+
+    diskA.rotation.z += speed;
+    diskB.rotation.z += speed * 0.86;
+    root.rotation.y = 0.16 + scrollFactor * 0.22;
+    root.rotation.x = 0.24 + Math.sin(t * 0.15) * 0.02;
+
+    halo.material.opacity = 0.45 + Math.sin(t * 1.2) * 0.05 + clickBoost * 0.3;
+    stars.rotation.y += reduceMotion ? 0.00012 : 0.00035;
+
+    clickBoost *= 0.92;
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(tick);
+  }
+
+  tick();
 })();
