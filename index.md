@@ -6,11 +6,11 @@ title: Home
 <section class="hero-split">
   <div class="hero-copy">
     <p class="eyebrow">Jay Verma Trivedi · Astrophysics Researcher</p>
-    <h1>Testing Extreme Gravity with Observable Physics</h1>
+    <h1>Observational Aspects of Singularities</h1>
     <p class="lede">
-      I study gravitational collapse, cosmic censorship, naked singularity geometries, and the
-      astrophysical signatures that separate horizonless compact objects from standard black hole models.
-      My current work connects strong-gravity theory to accretion, precession, and galaxy-scale feedback.
+      My current research focuses on observational diagnostics of gravitational collapse end states:
+      black hole versus naked singularity scenarios, generalized JMN geometries, shadow structure,
+      accretion-disk spectra, and feedback mechanisms linked to galaxy quenching.
     </p>
     <div class="cta-row">
       <a class="btn-ghost" href="research.html">Research Program</a>
@@ -30,16 +30,16 @@ title: Home
   <h2 style="margin-top:0;">Research Focus</h2>
   <div class="grid">
     <div>
-      <h3>Compact Object Alternatives</h3>
-      <p>Generalized JMN class models and horizon diagnostics for realistic collapse end states.</p>
+      <h3>Generalized JMN Models</h3>
+      <p>Robustness tests of naked-singularity equilibrium spacetimes with density inhomogeneity.</p>
     </div>
     <div>
       <h3>Observational Discriminants</h3>
-      <p>Timelike geodesic precession, accretion behavior, and signatures relevant to black-hole mimickers.</p>
+      <p>Shadow formation and thin-disk emission as measurable signatures distinguishing compact-object classes.</p>
     </div>
     <div>
-      <h3>Astrophysical Consequences</h3>
-      <p>Implications of strong-gravity central engines for galaxy quenching and long-timescale evolution.</p>
+      <h3>Galaxy-Scale Implications</h3>
+      <p>Accretion-driven outflows and feedback from astrophysical black-hole models for quenching phenomena.</p>
     </div>
   </div>
 </section>
