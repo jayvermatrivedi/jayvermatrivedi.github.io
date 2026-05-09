@@ -43,7 +43,22 @@ body::before {
   background:
     radial-gradient(980px 620px at 82% 24%, rgba(204, 151, 118, 0.12), transparent 64%),
     radial-gradient(840px 540px at 18% 16%, rgba(126, 155, 175, 0.12), transparent 62%),
-    linear-gradient(115deg, rgba(252, 248, 242, 0.9) 0%, rgba(248, 241, 234, 0.84) 54%, rgba(243, 235, 225, 0.82) 100%);
+    linear-gradient(115deg, rgba(252, 248, 242, 0.9) 0%, rgba(248, 241, 234, 0.84) 54%, rgba(243, 235, 225, 0.82) 100%),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(105, 121, 149, 0.015) 0px,
+      rgba(105, 121, 149, 0.015) 27px,
+      rgba(105, 121, 149, 0.11) 28px,
+      rgba(105, 121, 149, 0.015) 29px
+    ),
+    linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc(50% - 280px),
+      rgba(198, 90, 72, 0.12) calc(50% - 280px),
+      rgba(198, 90, 72, 0.12) calc(50% - 278px),
+      transparent calc(50% - 278px)
+    );
 }
 
 body::after {
@@ -186,10 +201,17 @@ a:hover {
   border: 1px solid var(--line);
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 251, 246, 0.9)),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 26px,
+      rgba(111, 128, 161, 0.11) 27px,
+      transparent 28px
+    ),
     url("/assets/patterns/patola-reference.png");
-  background-size: auto, cover;
+  background-size: auto, auto, cover;
   background-position: center, center top;
-  background-blend-mode: normal, soft-light;
+  background-blend-mode: normal, normal, soft-light;
   backdrop-filter: blur(8px);
   box-shadow: 0 18px 40px rgba(75, 58, 45, 0.12);
 }
@@ -210,7 +232,14 @@ a:hover {
 }
 
 .paper-copy { padding: 16px 18px 18px; }
-.paper-copy p { color: var(--muted); }
+.paper-copy p {
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.paper-copy p:last-child {
+  margin-bottom: 0;
+}
 
 .grid {
   display: grid;
@@ -220,7 +249,7 @@ a:hover {
 
 .post-content,
 .page-content {
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
 pre,
@@ -235,6 +264,13 @@ code {
 
 .global-contact .card {
   background: rgba(255, 255, 255, 0.94);
+}
+
+.page-content p,
+.page-content li,
+.card p,
+.card li {
+  line-height: 1.75;
 }
 
 @media (max-width: 860px) {
