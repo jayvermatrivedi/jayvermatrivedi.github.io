@@ -1,18 +1,26 @@
 title: Jay Verma Trivedi
-description: Astrophysics | Gravitation | Singularities | Cosmic Censorship
-theme: minima
+description: Official website of Jay Verma Trivedi, astrophysics researcher in gravitation, collapse physics, and cosmic censorship.
+url: "https://jayvermatrivedi.github.io"
+baseurl: ""
+lang: en
 
+theme: minima
 markdown: kramdown
 kramdown:
   math_engine: mathjax
 
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 header_pages:
   - research.md
   - preprints.md
   - blog.md
   - cv.md
-  - search.md
   - contact.md
+
+author:
+  name: Jay Verma Trivedi
+  email: jayverma4455@gmail.com
