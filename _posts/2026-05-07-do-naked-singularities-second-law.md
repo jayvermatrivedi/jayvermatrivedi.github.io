@@ -4,7 +4,7 @@ title: "Do Naked Singularities Respect the Second Law Better Than Black Holes?"
 subtitle: "From a falling coffee mug to cosmic censorship: entropy at the edge of spacetime."
 ---
 
-<img src="https://miro.medium.com/v2/resize%3Afill%3A64%3A64/1%2AdmbNkD5D-u45r44go_cf0g.png" alt="Medium article image" style="width:100%;max-width:560px;height:auto;border-radius:14px;border:1px solid rgba(255,255,255,0.14);margin: 8px 0 16px 0;"/>
+<img src="/assets/blog/second-law-naked-singularity.webp" alt="Feature image for article on entropy, black holes, and naked singularities" style="width:100%;max-width:760px;height:auto;border-radius:14px;border:1px solid rgba(255,255,255,0.14);margin: 8px 0 16px 0;"/>
 
 If horizons rescue the Second Law for black holes, do naked singularities avoid the paradox entirely?
 
