@@ -46,6 +46,19 @@ body::before {
     linear-gradient(110deg, rgba(3, 6, 12, 1) 0%, rgba(3, 6, 12, 0.95) 48%, rgba(3, 6, 12, 0.66) 100%);
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background-image: url("/assets/patterns/rajkot-patola-cosmos.svg");
+  background-size: 360px 360px;
+  background-repeat: repeat;
+  opacity: 0.23;
+  mix-blend-mode: screen;
+}
+
 .site-header,
 .site-footer {
   border: none;
@@ -167,7 +180,11 @@ a:hover {
 .paper-card {
   border-radius: 18px;
   border: 1px solid var(--line);
-  background: var(--panel);
+  background:
+    linear-gradient(135deg, rgba(17, 30, 50, 0.88), rgba(8, 16, 30, 0.86)),
+    url("/assets/patterns/rajkot-patola-cosmos.svg");
+  background-size: auto, 420px 420px;
+  background-blend-mode: normal, soft-light;
   backdrop-filter: blur(8px);
   box-shadow: 0 20px 44px rgba(0, 0, 0, 0.42);
 }
