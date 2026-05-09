@@ -5,15 +5,15 @@
 @import "minima";
 
 :root {
-  --bg: #05080f;
-  --text: #eff5fc;
-  --muted: #bbcadb;
-  --panel: rgba(11, 20, 36, 0.78);
-  --panel-strong: rgba(9, 16, 30, 0.92);
-  --line: rgba(187, 213, 235, 0.28);
-  --accent-warm: #f3a86b;
-  --accent-cool: #8fd1ff;
-  --accent-signal: #6dd9c2;
+  --bg: #f8f2e6;
+  --text: #2f3340;
+  --muted: #60677a;
+  --panel: rgba(255, 255, 255, 0.86);
+  --panel-strong: rgba(255, 255, 255, 0.93);
+  --line: rgba(145, 133, 117, 0.32);
+  --accent-warm: #c8895d;
+  --accent-cool: #7d8eb0;
+  --accent-signal: #7a9f95;
 }
 
 * { box-sizing: border-box; }
@@ -41,9 +41,9 @@ body::before {
   z-index: -4;
   pointer-events: none;
   background:
-    radial-gradient(920px 620px at 84% 30%, rgba(243, 168, 107, 0.11), transparent 62%),
-    radial-gradient(700px 500px at 15% 14%, rgba(143, 209, 255, 0.11), transparent 58%),
-    linear-gradient(110deg, rgba(3, 6, 12, 1) 0%, rgba(3, 6, 12, 0.95) 48%, rgba(3, 6, 12, 0.66) 100%);
+    radial-gradient(1000px 640px at 85% 28%, rgba(208, 151, 117, 0.2), transparent 64%),
+    radial-gradient(860px 560px at 16% 18%, rgba(146, 174, 189, 0.19), transparent 62%),
+    linear-gradient(115deg, rgba(252, 246, 236, 0.98) 0%, rgba(248, 241, 231, 0.97) 50%, rgba(243, 236, 226, 0.95) 100%);
 }
 
 body::after {
@@ -52,11 +52,13 @@ body::after {
   inset: 0;
   z-index: -3;
   pointer-events: none;
-  background-image: url("/assets/patterns/rajkot-patola-cosmos.svg");
-  background-size: 360px 360px;
+  background-image:
+    linear-gradient(rgba(255, 250, 241, 0.86), rgba(255, 250, 241, 0.86)),
+    url("/assets/patterns/rajkot-patola-cosmos.svg");
+  background-size: auto, 520px 520px;
   background-repeat: repeat;
-  opacity: 0.23;
-  mix-blend-mode: screen;
+  opacity: 0.58;
+  mix-blend-mode: multiply;
 }
 
 .site-header,
@@ -181,10 +183,10 @@ a:hover {
   border-radius: 18px;
   border: 1px solid var(--line);
   background:
-    linear-gradient(135deg, rgba(17, 30, 50, 0.88), rgba(8, 16, 30, 0.86)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(251, 246, 239, 0.92)),
     url("/assets/patterns/rajkot-patola-cosmos.svg");
-  background-size: auto, 420px 420px;
-  background-blend-mode: normal, soft-light;
+  background-size: auto, 540px 540px;
+  background-blend-mode: normal, overlay;
   backdrop-filter: blur(8px);
   box-shadow: 0 20px 44px rgba(0, 0, 0, 0.42);
 }
@@ -220,7 +222,7 @@ a:hover {
 
 pre,
 code {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(233, 220, 202, 0.35);
   border-radius: 8px;
 }
 
