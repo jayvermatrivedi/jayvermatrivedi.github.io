@@ -14,6 +14,9 @@
   --accent-warm: #c8895d;
   --accent-cool: #7d8eb0;
   --accent-signal: #7a9f95;
+  --notebook-margin: rgba(198, 90, 72, 0.14);
+  --notebook-hole: rgba(112, 123, 147, 0.18);
+  --marker: rgba(239, 205, 117, 0.42);
 }
 
 * { box-sizing: border-box; }
@@ -58,6 +61,14 @@ body::before {
       rgba(198, 90, 72, 0.12) calc(50% - 280px),
       rgba(198, 90, 72, 0.12) calc(50% - 278px),
       transparent calc(50% - 278px)
+    ),
+    linear-gradient(
+      to right,
+      transparent 0,
+      transparent 56px,
+      var(--notebook-margin) 56px,
+      var(--notebook-margin) 58px,
+      transparent 58px
     );
 }
 
@@ -69,10 +80,14 @@ body::after {
   pointer-events: none;
   background-image:
     linear-gradient(rgba(248, 242, 230, 0.78), rgba(248, 242, 230, 0.78)),
+    radial-gradient(circle at 24px 28px, var(--notebook-hole) 0 5px, transparent 6px),
+    radial-gradient(circle at 24px 118px, var(--notebook-hole) 0 5px, transparent 6px),
+    radial-gradient(circle at 24px 208px, var(--notebook-hole) 0 5px, transparent 6px),
+    radial-gradient(circle at 24px 298px, var(--notebook-hole) 0 5px, transparent 6px),
     url("/assets/patterns/patola-reference.png");
-  background-size: auto, cover;
-  background-position: center, center top;
-  background-repeat: repeat, no-repeat;
+  background-size: auto, 100% 100px, 100% 100px, 100% 100px, 100% 100px, cover;
+  background-position: center, 0 0, 0 90px, 0 180px, 0 270px, center top;
+  background-repeat: repeat, repeat, repeat, repeat, repeat, no-repeat;
   opacity: 1;
   mix-blend-mode: normal;
   filter: saturate(0.92) brightness(1.03);
@@ -271,6 +286,43 @@ code {
 .card p,
 .card li {
   line-height: 1.75;
+}
+
+.card h2,
+.card h3 {
+  display: inline-block;
+  padding: 0.08em 0.22em;
+  background: linear-gradient(transparent 58%, var(--marker) 58%, var(--marker) 86%, transparent 86%);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 0.2em 0.45em;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(145, 133, 117, 0.16);
+}
+
+.page-content .wrapper {
+  position: relative;
+}
+
+.page-content .wrapper::before {
+  content: "";
+  position: fixed;
+  left: max(18px, calc((100vw - min(980px, 92vw)) / 2 + 36px));
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent 0, var(--notebook-margin) 8%, var(--notebook-margin) 92%, transparent 100%);
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+@media (max-width: 860px) {
+  .page-content .wrapper::before { left: 22px; }
 }
 
 @media (max-width: 860px) {
