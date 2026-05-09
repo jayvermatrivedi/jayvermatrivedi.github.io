@@ -41,9 +41,9 @@ body::before {
   z-index: -4;
   pointer-events: none;
   background:
-    radial-gradient(1000px 640px at 85% 28%, rgba(208, 151, 117, 0.2), transparent 64%),
-    radial-gradient(860px 560px at 16% 18%, rgba(146, 174, 189, 0.19), transparent 62%),
-    linear-gradient(115deg, rgba(252, 246, 236, 0.98) 0%, rgba(248, 241, 231, 0.97) 50%, rgba(243, 236, 226, 0.95) 100%);
+    radial-gradient(980px 620px at 82% 24%, rgba(204, 151, 118, 0.12), transparent 64%),
+    radial-gradient(840px 540px at 18% 16%, rgba(126, 155, 175, 0.12), transparent 62%),
+    linear-gradient(115deg, rgba(252, 248, 242, 0.9) 0%, rgba(248, 241, 234, 0.84) 54%, rgba(243, 235, 225, 0.82) 100%);
 }
 
 body::after {
@@ -53,12 +53,14 @@ body::after {
   z-index: -3;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 250, 241, 0.86), rgba(255, 250, 241, 0.86)),
-    url("/assets/patterns/rajkot-patola-cosmos.svg");
-  background-size: auto, 520px 520px;
-  background-repeat: repeat;
-  opacity: 0.58;
-  mix-blend-mode: multiply;
+    linear-gradient(rgba(248, 242, 230, 0.78), rgba(248, 242, 230, 0.78)),
+    url("/assets/patterns/patola-reference.png");
+  background-size: auto, cover;
+  background-position: center, center top;
+  background-repeat: repeat, no-repeat;
+  opacity: 1;
+  mix-blend-mode: normal;
+  filter: saturate(0.92) brightness(1.03);
 }
 
 .site-header,
@@ -167,15 +169,15 @@ a:hover {
   padding: 9px 14px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(16, 30, 52, 0.8);
+  background: rgba(255, 255, 255, 0.86);
   color: var(--text);
   font-family: "Space Grotesk", sans-serif;
   font-weight: 600;
 }
 
 .btn-ghost:hover {
-  border-color: rgba(143, 209, 255, 0.78);
-  background: rgba(23, 40, 66, 0.94);
+  border-color: rgba(125, 142, 176, 0.72);
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .card,
@@ -183,12 +185,13 @@ a:hover {
   border-radius: 18px;
   border: 1px solid var(--line);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(251, 246, 239, 0.92)),
-    url("/assets/patterns/rajkot-patola-cosmos.svg");
-  background-size: auto, 540px 540px;
-  background-blend-mode: normal, overlay;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 251, 246, 0.9)),
+    url("/assets/patterns/patola-reference.png");
+  background-size: auto, cover;
+  background-position: center, center top;
+  background-blend-mode: normal, soft-light;
   backdrop-filter: blur(8px);
-  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.42);
+  box-shadow: 0 18px 40px rgba(75, 58, 45, 0.12);
 }
 
 .card { padding: 20px; }
@@ -231,7 +234,7 @@ code {
 }
 
 .global-contact .card {
-  background: var(--panel-strong);
+  background: rgba(255, 255, 255, 0.94);
 }
 
 @media (max-width: 860px) {
