@@ -4,7 +4,7 @@ title: "What is at the Centre of Our Galaxy?"
 subtitle: "Tussle of the black hole with its sibling!"
 ---
 
-<div style="font-size:18px; color:#d7d7e0; margin: 0 0 18px 0;">
+<div class="muted" style="font-size:18px; margin: 0 0 18px 0;">
   <i>Tussle of the black hole with its sibling!</i>
 </div>
 
@@ -14,10 +14,10 @@ subtitle: "Tussle of the black hole with its sibling!"
   object-fit:cover;
   border-radius:22px;
   margin: 12px 0 14px 0;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(31,41,55,0.12);
 "/>
 
-<div style="color:#d7d7e0; font-size:13px; margin-top:-6px; margin-bottom:22px;">
+<div class="muted" style="font-size:13px; margin-top:-6px; margin-bottom:22px;">
   Image credit: Event Horizon Telescope Collaboration (Sgr A*, 2022).
 </div>
 

@@ -6,16 +6,7 @@ permalink: /search/
 
 # Search
 
-<input id="search-input" type="text" placeholder="Search blog posts..." style="
-  width:100%;
-  padding:12px 14px;
-  border-radius:14px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: #e6e6eb;
-  outline: none;
-  font-size: 16px;
-"/>
+<input id="search-input" class="search-input" type="text" placeholder="Search blog posts..." />
 
 <div id="search-results" style="margin-top:16px;"></div>
 
@@ -37,9 +28,9 @@ function renderResults(results, posts) {
   container.innerHTML = results.map(r => {
     const post = posts[r.ref];
     return `
-      <div class="card" style="margin-top:12px;">
-        <div style="font-size:13px;color:#f4b860;">${post.type}</div>
-        <h3 style="margin:6px 0 6px 0;">
+      <div class="search-result">
+        <div class="meta-label">${post.type}</div>
+        <h3>
           <a href="${post.url}">${post.title}</a>
         </h3>
       </div>

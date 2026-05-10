@@ -1,9 +1,6 @@
 <header class="site-header" role="banner">
   <div class="wrapper">
-    <a class="site-title" rel="author" href="{{ '/' | relative_url }}">
-      <span>Jay Verma</span>
-      <span>Trivedi</span>
-    </a>
+    <a class="site-title" rel="author" href="{{ '/' | relative_url }}">{{ site.author.name | default: 'Jay Verma Trivedi' }}</a>
 
     {%- if site.header_pages -%}
       <nav class="site-nav">
