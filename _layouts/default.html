@@ -2,8 +2,6 @@
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
   {%- include head.html -%}
   <body>
-    <canvas id="galaxy-bg" aria-hidden="true"></canvas>
-
     {%- include header.html -%}
 
     <main class="page-content" aria-label="Content">
@@ -14,7 +12,7 @@
 
     <section class="global-contact">
       <div class="wrapper">
-        <div class="card">
+        <div class="card contact-card">
           <h2 style="margin-top: 0;">Connect</h2>
           <div class="link-row" style="margin-top: 0;">
             <a href="https://orcid.org/0000-0002-8064-082X">ORCID</a>
@@ -33,7 +31,5 @@
     </section>
 
     {%- include footer.html -%}
-    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-    <script src="{{ '/assets/js/galaxy.js' | relative_url }}"></script>
   </body>
 </html>

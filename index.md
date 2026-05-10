@@ -6,7 +6,7 @@ title: Home
 <section class="hero-split">
   <div class="hero-copy">
     <p class="eyebrow">Jay Verma Trivedi · Astrophysics Researcher</p>
-    <h1>Observational Aspects of Singularities</h1>
+    <h1><span>Observational Aspects</span><span>of Singularities</span></h1>
     <p class="lede">
       My current research focuses on observational diagnostics of gravitational collapse end states:
       black hole versus naked singularity scenarios, generalized JMN geometries, shadow structure,
